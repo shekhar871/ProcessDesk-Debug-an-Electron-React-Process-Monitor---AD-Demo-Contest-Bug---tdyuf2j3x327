@@ -8,7 +8,7 @@ export function useSelectedProcess(snapshot) {
   // Should resolve the selected process from the latest snapshot by matching its PID,
   // so the inspector always reflects fresh data instead of a copy taken at click time.
   const selected = useMemo(
-    () => (selectedPid === null ? null : (snapshot.find((p) => p.name === selectedPid) ?? null)),
+    () => (selectedPid === null ? null : (snapshot.find((p) => p.pid === selectedPid) ?? null)),
     [snapshot, selectedPid],
   );
 

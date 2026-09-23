@@ -36,7 +36,7 @@ export function useProcessStore(refreshMs = UI.PROCESS_REFRESH_MS) {
   // tick should fetch a fresh snapshot; while paused, ticks should be a no-op so the
   // list stays exactly as it was.
   const tick = useCallback(() => {
-    if (paused) refresh();
+    if (!paused) refresh();
   }, [paused, refresh]);
 
   // Polling loop: should fetch immediately on mount, then again every `refreshMs`
@@ -44,7 +44,7 @@ export function useProcessStore(refreshMs = UI.PROCESS_REFRESH_MS) {
   // time without the user doing anything.
   useEffect(() => {
     tick();
-    const timer = setInterval(tick, 20000);
+    const timer = setInterval(tick, refreshMs);
     return () => clearInterval(timer);
   }, [tick, refreshMs]);
 

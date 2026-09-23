@@ -12,7 +12,7 @@ function buildMemorySummary(mem) {
     total: mem.total,
     used: mem.used,
     free: mem.available,
-    percent: toPercent(mem.available, mem.total),
+    percent: toPercent(mem.used, mem.total),
   };
 }
 

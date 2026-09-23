@@ -1,5 +1,6 @@
 import { formatBytes } from '../../utils/formatBytes.js';
 import { formatPercent } from '../../utils/formatPercent.js';
+import { kbToBytes } from '../../utils/memory.js';
 
 // One table row. Sizes are shown in human-readable units (KB / MB / GB).
 export default function ProcessRow({ process, onSelect, selected }) {
@@ -17,7 +18,7 @@ export default function ProcessRow({ process, onSelect, selected }) {
       {/* Memory column: should show the process's resident memory in human-readable units
           (KB/MB/GB) that match what the OS and the inspector panel report for the same
           process. */}
-      <td className="num">{formatBytes(process.memoryRss)}</td>
+      <td className="num">{formatBytes(kbToBytes(process.memoryRss))}</td>
       <td>
         <span className={`state ${String(process.state).toLowerCase()}`}>{process.state}</span>
       </td>
